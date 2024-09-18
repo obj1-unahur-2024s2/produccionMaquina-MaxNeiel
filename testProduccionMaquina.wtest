@@ -1,9 +1,13 @@
 import maquina.*
 
-describe "group of tests ..." {
+describe "group of tests maquina" {
 
-  test "test 1 ..." {
-    assert.that(true)
+  test "la maquina produjo alguna vez 1 unidad" {
+    assert.that(maquina.algunDiaSeProdujo(1))
+  }
+
+  test "La maquina nunca produjo 250"{
+    assert.notThat(maquina.algunDiaSeProdujo(250))
   }
 
 }
