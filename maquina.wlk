@@ -22,22 +22,41 @@ object maquina {
   method produccionesSumando(cant) = produccion.map({p=> p+cant})
   
   }
+  
+  /////////////////// Nueva maquina en la panaderia
+
+  object horno{
+    const produccion = []
+    method producir(que) = produccion.add(que)
+
+    method algunDiaSeProdujo(cantidad) = produccion.any({e=>e.cantidad() == cantidad})
+    method totalProducido() = produccion.sum({p=>p.cantidad()})
+    method elPrimeroParaCeliaco() = produccion.find({p=>p.esAptoCeliaco()})
+    method seProdujoAlgoParaCeliacos() = produccion.any({p=>p.esAptoCeliaco()})
+    //method cantidadDePanTotalProducida() = produccion.filter({p=>p == pan}).sum({p=>p.cantidad()})
+    method produccionesQueSonPan() = produccion.filter({p=>p == pan})
+    method cantidadDePanTotalProducida() = self.produccionesQueSonPan().sum({p=>p.cantidad()})
+  }
 
   object bizcocho{
     method cantidad() = 100
+    method esDeTrigo() = false
+    method esAptoCeliaco() = not self.esDeTrigo()
   }
   
   object factura{
     method cantidad() = 12
+    method esAptoCeliaco() = false
   }
 
   object pan{
-    var cantidad = 5
+    const cantidad = 5
     method cantidad() = cantidad
-
+    method esAptoCeliaco() = false
   }
 
  object sanguchito{
-  var cantidad = 1
+  const cantidad = 10
   method cantidad() = cantidad
+  method esAptoCeliaco() = false
  } 

@@ -40,3 +40,28 @@ describe "group of tests maquina" {
   }
 
 }
+
+describe "grupo de tests de horno" {
+  test "Se produjo algo apto para celiacos cuando se producen bizchochos" {
+    horno.producir(bizcocho)
+    assert.that(horno.seProdujoAlgoParaCeliacos())
+  }
+  test "No se produjo algo apto para celiacos cuando no se producen bizcochos"{
+    horno.producir(pan)
+    horno.producir(factura)
+    assert.notThat(horno.seProdujoAlgoParaCeliacos())
+  }
+
+  test "producciones que son pan debe retornar [pan, pan] cuando se produce pan 2 veces"{
+    horno.producir(pan)
+    horno.producir(pan)
+    assert.equals([pan, pan], horno.produccionesQueSonPan())
+  }
+
+  test "Cantidad total producida debe ser 10 cuando se produzca pan 2 veces" {
+    horno.producir(pan)
+    horno.producir(pan)
+    assert.equals(10, horno.cantidadDePanTotalProducida())
+    
+  }
+}
