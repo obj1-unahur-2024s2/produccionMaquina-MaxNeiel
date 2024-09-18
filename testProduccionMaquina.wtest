@@ -10,4 +10,27 @@ describe "group of tests maquina" {
     assert.notThat(maquina.algunDiaSeProdujo(250))
   }
 
+  test "El maximo valor de produccion fue 70"{
+    assert.that(maquina.maximoValorDeProduccion() == 70)
+  }
+
+  test "El total de piezas producidas es 106"{
+    assert.that(maquina.totalProducido() == 106)
+  }
+
+  test "El ultimo valor registrado es 30"{
+    assert.that(maquina.ultimoValorDeProduccion() == 30)
+  }
+
+  test "La lista queda vacia despues de borrarTodos()"{
+    maquina.borrarTodos()
+    assert.that(maquina.produccion().isEmpty())
+  }
+
+  test "obtenerElemento(1) retorna 70"{
+    assert.that(maquina.obtenerElemento(1) == 70)
+  }
+
+
+
 }
