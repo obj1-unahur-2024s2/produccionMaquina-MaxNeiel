@@ -36,27 +36,44 @@ object maquina {
     //method cantidadDePanTotalProducida() = produccion.filter({p=>p == pan}).sum({p=>p.cantidad()})
     method produccionesQueSonPan() = produccion.filter({p=>p == pan})
     method cantidadDePanTotalProducida() = self.produccionesQueSonPan().sum({p=>p.cantidad()})
+    method hacerAptoCeliacoATodos() = produccion.forEach({p=>p.hacerAptoCeliaco()})
+    method todaLaProduccionEsAptaCeliacos() = produccion.all({p=>p.esAptoCeliaco()})
   }
 
   object bizcocho{
+    var esAptoCeliaco = true
     method cantidad() = 100
-    method esDeTrigo() = false
-    method esAptoCeliaco() = not self.esDeTrigo()
+    method esAptoCeliaco() = esAptoCeliaco
+    method hacerAptoCeliaco() {
+      esAptoCeliaco = true
+    }
   }
   
   object factura{
+    var esAptoCeliaco = false
     method cantidad() = 12
-    method esAptoCeliaco() = false
+    method esAptoCeliaco() = esAptoCeliaco
+    method hacerAptoCeliaco() {
+      esAptoCeliaco = true
+    }
   }
 
   object pan{
+    var esAptoCeliaco = false
     const cantidad = 5
     method cantidad() = cantidad
-    method esAptoCeliaco() = false
+    method esAptoCeliaco() = esAptoCeliaco
+    method hacerAptoCeliaco() {
+      esAptoCeliaco = true
+    }
   }
 
  object sanguchito{
+  var esAptoCeliaco = false
   const cantidad = 10
   method cantidad() = cantidad
-  method esAptoCeliaco() = false
+  method esAptoCeliaco() = esAptoCeliaco
+  method hacerAptoCeliaco() {
+      esAptoCeliaco = true
+  }
  } 

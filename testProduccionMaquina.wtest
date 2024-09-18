@@ -64,4 +64,13 @@ describe "grupo de tests de horno" {
     assert.equals(10, horno.cantidadDePanTotalProducida())
     
   }
+
+  test "Toda la produccion es apta para celiacos cuando se las convierte" {
+    horno.producir(pan)
+    horno.producir(factura)
+    horno.producir(bizcocho)
+    horno.hacerAptoCeliacoATodos()
+    assert.that(horno.todaLaProduccionEsAptaCeliacos())
+    
+  }
 }
